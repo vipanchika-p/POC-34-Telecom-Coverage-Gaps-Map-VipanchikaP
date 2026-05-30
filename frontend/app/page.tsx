@@ -12,12 +12,12 @@ const MapView = dynamic(
 interface DashboardMetrics {
   population_served: string;
   national_coverage_score: number;
+  gap_score: number;
 }
-
 export default function Home() {
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [selectedRegion, setSelectedRegion] = useState("All Regions");   
   useEffect(() => {
     // Fetches live telemetry metrics from your local FastAPI server instance
     fetch("http://127.0.0.1:8000/api/v1/dashboard/metrics")
@@ -66,8 +66,25 @@ export default function Home() {
 
         {/* CHANGED: Section title to a modern, cleaner slate white */}
         <h2 className="text-2xl font-bold tracking-tight text-slate-100">
-          Infrastructure Intelligence
+        Infrastructure Intelligence
         </h2>
+
+        <div className="mt-4">
+        <label className="text-sm text-slate-400">
+        Filter by Region
+        </label>
+
+        <select
+        className="mt-2 w-full rounded-lg bg-[#111827] border border-slate-700 p-2 text-slate-100"
+        value={selectedRegion}
+        onChange={(e) => setSelectedRegion(e.target.value)}
+        >
+        <option>All Regions</option>
+        <option>Urban Core</option>
+        <option>Rural East</option>
+        <option>Mountain Zone</option>
+        </select>
+        </div>
 
         {/* CARD 1 */}
         <div className="mt-6 rounded-xl border border-slate-800/60 bg-[#111827] p-5">
@@ -104,7 +121,24 @@ export default function Home() {
           </h3>
 
         </div>
+          {/* GAP SCORE CARD */}
+          <div className="mt-6 rounded-xl border border-slate-800/60 bg-[#111827] p-5">
 
+          <p className="text-xs font-semibold tracking-wider uppercase text-slate-400">
+            Gap Score
+          </p>
+
+          <h3 className="mt-2 text-4xl font-extrabold text-slate-50 font-mono tracking-tight">
+          {loading ? (
+          <span className="text-xl text-slate-500 animate-pulse">
+        Loading...
+          </span>
+        ) : (
+          metrics?.gap_score ?? 0
+          )}
+        </h3>
+
+    </div>  
         {/* WHY THIS MATTERS */}
         <div className="mt-6 rounded-xl border border-slate-800/60 bg-[#111827] p-5">
 
