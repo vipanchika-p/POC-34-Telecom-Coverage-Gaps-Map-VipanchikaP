@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+/* ... rest of your root variables ... */
+@import "tailwindcss";
+
+:root {
+  /* Set your default background to the requested obsidian color */
+  --background: #030712;
+  --foreground: #f3f4f6;
+}
+
+@theme {
+  /* Define your background color */
+  --color-obsidian-dark: #030712;    /* Deep layout background */
+  --color-obsidian-card: #0b1329;    /* Slightly lighter card background */
+
+  /* Define your typography colors */
+  --color-heading-main: #ffffff;     /* Bright white for primary titles */
+  --color-heading-accent: #38bdf8;   /* Soft cyber blue for section headers */
+  --color-text-body: #94a3b8;        /* Muted slate gray for readable descriptions */
+}
+
+/* Force dark mode values to be the same obsidian scheme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #030712;
+    --foreground: #f3f4f6;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Plus Jakarta Sans', sans-serif; /* Updated font */
+}
+
+/* ==========================================================================
+   FIX FOR LEAFLET MAP TILE ALIGNMENT & JAGGED LINES
+   ========================================================================== */
+.leaflet-container img.leaflet-tile {
+  max-width: none !important;
+  max-height: none !important;
+  transition: none !important;
+  animation: none !important;
+}

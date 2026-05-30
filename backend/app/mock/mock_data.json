@@ -1,0 +1,29 @@
+
+{
+  "regions": [
+    {
+      "id": 1,
+      "name": "Urban Core",
+      "coverage_score": 90,
+      "population_served": 2400000,
+      "gap_score": 8,
+      "provider": "TelecomNet"
+    },
+    {
+      "id": 2,
+      "name": "Rural East",
+      "coverage_score": 48,
+      "population_served": 640000,
+      "gap_score": 52,
+      "provider": "SignalWave"
+    },
+    {
+      "id": 3,
+      "name": "Mountain Zone",
+      "coverage_score": 33,
+      "population_served": 210000,
+      "gap_score": 67,
+      "provider": "No Stable Coverage"
+    }
+  ]
+}
